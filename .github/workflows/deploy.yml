@@ -10,8 +10,6 @@ jobs:
     environment: main
     steps:
       - uses: actions/checkout@v2
-      - run: echo ${{secrets.DOCKER_PASSWORD}}  ${{secrets.DOCKER_USERNAME}} --password-stdin
-      - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       - run: docker build -t jose/frontend -f Dockerfile.dev .
       - run: docker run -e CI=true jose/frontend npm test
 
